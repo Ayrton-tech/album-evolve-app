@@ -13,6 +13,7 @@ import { useCart } from "@/hooks/useCart";
 import { CartSidebar } from "@/components/CartSidebar";
 
 const Index = () => {
+  // Cart functionality
   const { toggleCart, getTotalItems } = useCart();
   const totalItems = getTotalItems();
   return (
