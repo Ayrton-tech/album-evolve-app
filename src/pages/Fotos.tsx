@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "@/hooks/use-toast";
+import { ShoppingCart } from "lucide-react";
 
 const Fotos = () => {
+  const { addItem } = useCart();
+  
+  const photoProducts = [
+    { id: 'foto-clasica', name: 'Foto Clásica 10x15 cm', price: 0.17, size: '10x15 cm' },
+    { id: 'foto-cuadrada', name: 'Foto Cuadrada 13x13 cm', price: 0.29, size: '13x13 cm' },
+    { id: 'foto-grande', name: 'Foto Grande 20x30 cm', price: 1.49, size: '20x30 cm' },
+    { id: 'foto-premium', name: 'Foto Premium 30x45 cm', price: 4.99, size: '30x45 cm' },
+  ];
+  
+  const handleAddToCart = (product: typeof photoProducts[0]) => {
+    addItem(product);
+    toast({
+      title: "¡Añadido al carrito!",
+      description: `${product.name} agregado correctamente`,
+    });
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-500 to-blue-600">
       <div className="container mx-auto px-4 py-16">
@@ -15,29 +34,24 @@ const Fotos = () => {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6 mb-12">
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-white hover:bg-white/20 transition-all">
-            <h3 className="text-xl font-semibold mb-2">Foto Clásica</h3>
-            <p className="text-cyan-100 mb-3">10x15 cm</p>
-            <p className="text-2xl font-bold">desde 0,17 €</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-white hover:bg-white/20 transition-all">
-            <h3 className="text-xl font-semibold mb-2">Foto Cuadrada</h3>
-            <p className="text-cyan-100 mb-3">13x13 cm</p>
-            <p className="text-2xl font-bold">desde 0,29 €</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-white hover:bg-white/20 transition-all">
-            <h3 className="text-xl font-semibold mb-2">Foto Grande</h3>
-            <p className="text-cyan-100 mb-3">20x30 cm</p>
-            <p className="text-2xl font-bold">desde 1,49 €</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-white hover:bg-white/20 transition-all">
-            <h3 className="text-xl font-semibold mb-2">Foto Premium</h3>
-            <p className="text-cyan-100 mb-3">30x45 cm</p>
-            <p className="text-2xl font-bold">desde 4,99 €</p>
-          </div>
+          {photoProducts.map((product, index) => (
+            <div 
+              key={product.id}
+              className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-white hover:bg-white/20 transition-all hover-lift animate-scale-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <h3 className="text-xl font-semibold mb-2">{product.name.split(' ').slice(0, 2).join(' ')}</h3>
+              <p className="text-cyan-100 mb-3">{product.size}</p>
+              <p className="text-2xl font-bold mb-4">desde {product.price.toFixed(2)} €</p>
+              <Button 
+                className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold hover-scale"
+                onClick={() => handleAddToCart(product)}
+              >
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Añadir al Carrito
+              </Button>
+            </div>
+          ))}
         </div>
 
         <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 text-white mb-12">

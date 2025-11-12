@@ -9,10 +9,16 @@ import productAlbum from "@/assets/product-album.jpg";
 import productCards from "@/assets/product-cards.jpg";
 import productCanvas from "@/assets/product-canvas.jpg";
 import productPuzzle from "@/assets/product-puzzle.jpg";
+import { useCart } from "@/hooks/useCart";
+import { CartSidebar } from "@/components/CartSidebar";
 
 const Index = () => {
+  const { toggleCart, getTotalItems } = useCart();
+  const totalItems = getTotalItems();
   return (
     <div className="min-h-screen">
+      <CartSidebar />
+      
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm">
         <Link to="#newsletter" className="hover:underline">
@@ -78,8 +84,16 @@ const Index = () => {
                 <User className="w-4 h-4" />
                 <span className="hidden sm:inline">Iniciar sesión</span>
               </button>
-              <button className="hover:text-primary transition-colors">
+              <button 
+                className="hover:text-primary transition-colors relative"
+                onClick={toggleCart}
+              >
                 <ShoppingCart className="w-5 h-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse-glow">
+                    {totalItems}
+                  </span>
+                )}
               </button>
             </div>
           </div>
