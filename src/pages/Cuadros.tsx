@@ -1,7 +1,27 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "@/hooks/use-toast";
+import { ShoppingCart } from "lucide-react";
+import productCanvas from "@/assets/product-canvas.jpg";
 
 const Cuadros = () => {
+  const { addItem } = useCart();
+  
+  const canvasProducts = [
+    { id: 'canvas', name: 'Canvas - Lienzo auténtico', price: 4.95, type: 'Canvas' },
+    { id: 'acrilico', name: 'Acrílico - Acabado brillante', price: 29.95, type: 'Acrílico' },
+    { id: 'dibond', name: 'Dibond - Aluminio premium', price: 34.95, type: 'Dibond' },
+    { id: 'forexglas', name: 'Forexglas - Ultra moderno', price: 39.95, type: 'Forexglas' },
+  ];
+  
+  const handleAddToCart = (product: typeof canvasProducts[0]) => {
+    addItem({ ...product, image: productCanvas });
+    toast({
+      title: "¡Añadido al carrito!",
+      description: `${product.name} agregado correctamente`,
+    });
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-600 to-orange-700">
       <div className="container mx-auto px-4 py-16">
@@ -15,33 +35,27 @@ const Cuadros = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-amber-200 to-orange-200 rounded-lg mb-4"></div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Canvas</h3>
-            <p className="text-gray-600 mb-3 text-sm">Lienzo auténtico</p>
-            <p className="text-amber-600 text-2xl font-bold">desde 4,95 €</p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-orange-200 to-red-200 rounded-lg mb-4"></div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Acrílico</h3>
-            <p className="text-gray-600 mb-3 text-sm">Acabado brillante</p>
-            <p className="text-amber-600 text-2xl font-bold">desde 29,95 €</p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-red-200 to-pink-200 rounded-lg mb-4"></div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Dibond</h3>
-            <p className="text-gray-600 mb-3 text-sm">Aluminio premium</p>
-            <p className="text-amber-600 text-2xl font-bold">desde 34,95 €</p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-pink-200 to-purple-200 rounded-lg mb-4"></div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Forexglas</h3>
-            <p className="text-gray-600 mb-3 text-sm">Ultra moderno</p>
-            <p className="text-amber-600 text-2xl font-bold">desde 39,95 €</p>
-          </div>
+          {canvasProducts.map((product, index) => (
+            <div 
+              key={product.id}
+              className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all hover-lift animate-scale-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="aspect-[3/4] rounded-lg mb-4 overflow-hidden">
+                <img src={productCanvas} alt={product.type} className="w-full h-full object-cover" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">{product.type}</h3>
+              <p className="text-gray-600 mb-3 text-sm">{product.name.split(' - ')[1]}</p>
+              <p className="text-amber-600 text-2xl font-bold mb-4">desde {product.price.toFixed(2)} €</p>
+              <Button 
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold hover-scale"
+                onClick={() => handleAddToCart(product)}
+              >
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Añadir al Carrito
+              </Button>
+            </div>
+          ))}
         </div>
 
         <div className="bg-white rounded-2xl p-8 md:p-12 mb-12">

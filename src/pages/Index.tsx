@@ -21,72 +21,65 @@ const Index = () => {
       <CartSidebar />
       
       {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm">
-        <Link to="#newsletter" className="hover:underline">
-          <strong>Suscríbete a nuestra Newsletter</strong> y aprovecha nuestras ofertas promocionales, consejos creativos e información sobre productos
+      <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white py-3 px-4 text-center text-sm font-medium animate-gradient">
+        <Link to="#newsletter" className="hover:underline flex items-center justify-center gap-2">
+          <Sparkles className="w-4 h-4 animate-pulse-glow" />
+          <strong>Suscríbete a nuestra Newsletter</strong> y aprovecha ofertas exclusivas
+          <Sparkles className="w-4 h-4 animate-pulse-glow" />
         </Link>
       </div>
 
       {/* Navigation */}
-      <nav className="bg-background border-b sticky top-0 z-50 backdrop-blur-sm bg-background/95">
+      <nav className="glass-effect border-b border-border/40 sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">D</span>
+            <Link to="/" className="flex items-center gap-3 hover-scale">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg animate-pulse-glow">
+                <span className="text-white font-bold text-2xl">P</span>
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                DigitalAlbum
-              </span>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold gradient-text">
+                  PhotoMoments
+                </span>
+                <span className="text-xs text-muted-foreground">Tu historia en imágenes</span>
+              </div>
             </Link>
 
             {/* Navigation Links */}
-            <div className="hidden lg:flex items-center gap-6">
-              <Link to="/album-digital" className="text-foreground hover:text-primary transition-colors">
+            <div className="hidden lg:flex items-center gap-1">
+              <Link to="/album-digital" className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-all font-medium">
                 Álbum Digital
               </Link>
-              <Link to="/calendarios" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/calendarios" className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-all font-medium">
                 Calendarios
               </Link>
-              <Link to="/calendarios-adviento" className="text-foreground hover:text-primary transition-colors">
-                Calendarios de Adviento
-              </Link>
-              <Link to="/fotos" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/fotos" className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-all font-medium">
                 Fotos
               </Link>
-              <Link to="/regalos" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/regalos" className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-all font-medium">
                 Regalos
               </Link>
-              <Link to="/puzzles" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/puzzles" className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-all font-medium">
                 Puzzles
               </Link>
-              <Link to="/cuadros" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/cuadros" className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-all font-medium">
                 Cuadros
-              </Link>
-              <Link to="/fundas" className="text-foreground hover:text-primary transition-colors">
-                Fundas
-              </Link>
-              <Link to="/tarjetas" className="text-foreground hover:text-primary transition-colors">
-                Tarjetas
-              </Link>
-              <Link to="/inspiracion" className="text-foreground hover:text-primary transition-colors">
-                Inspiración
               </Link>
             </div>
 
             {/* Right side icons */}
-            <div className="flex items-center gap-4">
-              <button className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+            <div className="flex items-center gap-3">
+              <button className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-primary/10 hover:text-primary transition-all">
                 <Phone className="w-4 h-4" />
-                <span className="hidden sm:inline">Atención al cliente</span>
+                <span className="hidden sm:inline font-medium">Ayuda</span>
               </button>
-              <button className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+              <button className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-primary/10 hover:text-primary transition-all">
                 <User className="w-4 h-4" />
-                <span className="hidden sm:inline">Iniciar sesión</span>
+                <span className="hidden sm:inline font-medium">Cuenta</span>
               </button>
               <button 
-                className="hover:text-primary transition-colors relative"
+                className="relative px-3 py-2 rounded-lg hover:bg-primary/10 transition-all hover-lift"
                 onClick={toggleCart}
               >
                 <ShoppingCart className="w-5 h-5" />

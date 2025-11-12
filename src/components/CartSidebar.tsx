@@ -1,17 +1,15 @@
+import { useState } from "react";
 import { X, Plus, Minus, ShoppingBag, Trash2, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
-import { toast } from "@/hooks/use-toast";
+import { CheckoutForm } from "./CheckoutForm";
 
 export const CartSidebar = () => {
   const { items, isOpen, toggleCart, removeItem, updateQuantity, getTotalPrice, clearCart } = useCart();
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const handleCheckout = () => {
-    toast({
-      title: "¡Procesando pago!",
-      description: "Redirigiendo al sistema de pago seguro...",
-    });
-    // Aquí iría la integración con Stripe
+    setShowCheckout(true);
   };
 
   return (
@@ -26,26 +24,29 @@ export const CartSidebar = () => {
       
       {/* Sidebar */}
       <div 
-        className={`fixed top-0 right-0 h-full w-full md:w-96 bg-background shadow-2xl z-50 transform transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 h-full w-full md:w-[480px] bg-background shadow-2xl z-50 transform transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/10 to-secondary/10">
-            <div className="flex items-center gap-3">
-              <ShoppingBag className="w-6 h-6 text-primary animate-pulse-glow" />
-              <h2 className="text-2xl font-bold gradient-text">Tu Carrito</h2>
+        {showCheckout ? (
+          <CheckoutForm onBack={() => setShowCheckout(false)} />
+        ) : (
+          <div className="flex flex-col h-full">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/10 to-secondary/10">
+              <div className="flex items-center gap-3">
+                <ShoppingBag className="w-6 h-6 text-primary animate-pulse-glow" />
+                <h2 className="text-2xl font-bold gradient-text">Tu Carrito</h2>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleCart}
+                className="hover-lift"
+              >
+                <X className="w-6 h-6" />
+              </Button>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleCart}
-              className="hover-lift"
-            >
-              <X className="w-6 h-6" />
-            </Button>
-          </div>
 
           {/* Items */}
           <div className="flex-1 overflow-y-auto p-6">
@@ -140,7 +141,8 @@ export const CartSidebar = () => {
               </Button>
             </div>
           )}
-        </div>
+          </div>
+        )}
       </div>
     </>
   );

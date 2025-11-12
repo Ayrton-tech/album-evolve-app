@@ -1,7 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "@/hooks/use-toast";
+import { ShoppingCart } from "lucide-react";
 
 const Fundas = () => {
+  const { addItem } = useCart();
+  
+  const caseProducts = [
+    { id: 'funda-movil', name: 'Funda de Móvil', price: 12.95, description: 'Compatible con todos los modelos' },
+    { id: 'funda-tablet', name: 'Funda de Tablet', price: 24.95, description: 'Para iPad y tablets Android' },
+    { id: 'funda-portatil', name: 'Funda de Portátil', price: 29.95, description: '13", 15" y 17 pulgadas' },
+  ];
+  
+  const handleAddToCart = (product: typeof caseProducts[0]) => {
+    addItem(product);
+    toast({
+      title: "¡Añadido al carrito!",
+      description: `${product.name} agregado correctamente`,
+    });
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-700 to-slate-900">
       <div className="container mx-auto px-4 py-16">
@@ -15,35 +33,28 @@ const Fundas = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white rounded-2xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[9/16] bg-gradient-to-br from-slate-200 to-slate-300 rounded-2xl mb-4 mx-auto max-w-[200px]"></div>
-            <h3 className="text-2xl font-semibold mb-2 text-gray-900">Funda de Móvil</h3>
-            <p className="text-gray-600 mb-4">Compatible con todos los modelos</p>
-            <p className="text-slate-700 text-3xl font-bold mb-4">desde 12,95 €</p>
-            <Button className="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold">
-              Personalizar Ahora
-            </Button>
-          </div>
-
-          <div className="bg-white rounded-2xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-slate-300 to-slate-400 rounded-2xl mb-4"></div>
-            <h3 className="text-2xl font-semibold mb-2 text-gray-900">Funda de Tablet</h3>
-            <p className="text-gray-600 mb-4">Para iPad y tablets Android</p>
-            <p className="text-slate-700 text-3xl font-bold mb-4">desde 24,95 €</p>
-            <Button className="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold">
-              Personalizar Ahora
-            </Button>
-          </div>
-
-          <div className="bg-white rounded-2xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[16/10] bg-gradient-to-br from-slate-400 to-slate-500 rounded-xl mb-4"></div>
-            <h3 className="text-2xl font-semibold mb-2 text-gray-900">Funda de Portátil</h3>
-            <p className="text-gray-600 mb-4">13", 15" y 17 pulgadas</p>
-            <p className="text-slate-700 text-3xl font-bold mb-4">desde 29,95 €</p>
-            <Button className="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold">
-              Personalizar Ahora
-            </Button>
-          </div>
+          {caseProducts.map((product, index) => (
+            <div 
+              key={product.id}
+              className="bg-white rounded-2xl p-6 hover:shadow-2xl transition-all hover-lift animate-scale-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className={`bg-gradient-to-br from-slate-200 to-slate-300 rounded-2xl mb-4 ${
+                product.id === 'funda-movil' ? 'aspect-[9/16] mx-auto max-w-[200px]' : 
+                product.id === 'funda-tablet' ? 'aspect-[3/4]' : 'aspect-[16/10]'
+              }`}></div>
+              <h3 className="text-2xl font-semibold mb-2 text-gray-900">{product.name}</h3>
+              <p className="text-gray-600 mb-4">{product.description}</p>
+              <p className="text-slate-700 text-3xl font-bold mb-4">desde {product.price.toFixed(2)} €</p>
+              <Button 
+                className="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold hover-scale"
+                onClick={() => handleAddToCart(product)}
+              >
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Añadir al Carrito
+              </Button>
+            </div>
+          ))}
         </div>
 
         <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 text-white mb-12">

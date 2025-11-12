@@ -1,7 +1,27 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "@/hooks/use-toast";
+import { ShoppingCart } from "lucide-react";
+import productCards from "@/assets/product-cards.jpg";
 
 const Tarjetas = () => {
+  const { addItem } = useCart();
+  
+  const cardProducts = [
+    { id: 'tarjeta-amor', name: 'Tarjetas de Amor', price: 2.95, emoji: '💝', description: 'Expresa tus sentimientos' },
+    { id: 'tarjeta-cumple', name: 'Cumpleaños', price: 2.95, emoji: '🎂', description: 'Celebra con estilo' },
+    { id: 'tarjeta-navidad', name: 'Navidad', price: 2.95, emoji: '🎄', description: 'Felicitaciones únicas' },
+    { id: 'tarjeta-gracias', name: 'Agradecimiento', price: 2.95, emoji: '💐', description: 'Di gracias con cariño' },
+  ];
+  
+  const handleAddToCart = (product: typeof cardProducts[0]) => {
+    addItem({ ...product, image: productCards });
+    toast({
+      title: "¡Añadido al carrito!",
+      description: `${product.name} agregado correctamente`,
+    });
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-500 to-pink-600">
       <div className="container mx-auto px-4 py-16">
@@ -15,41 +35,28 @@ const Tarjetas = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-red-200 to-pink-200 rounded-lg mb-4 flex items-center justify-center">
-              <span className="text-4xl">💝</span>
+          {cardProducts.map((product, index) => (
+            <div 
+              key={product.id}
+              className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all hover-lift animate-scale-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="aspect-[3/4] bg-gradient-to-br from-rose-200 to-pink-200 rounded-lg mb-4 flex flex-col items-center justify-center overflow-hidden">
+                <span className="text-4xl mb-2">{product.emoji}</span>
+                <img src={productCards} alt={product.name} className="w-full h-16 object-cover opacity-50" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900">{product.name}</h3>
+              <p className="text-sm text-gray-600 mb-3">{product.description}</p>
+              <p className="text-rose-600 text-xl font-bold mb-3">desde {product.price.toFixed(2)} €</p>
+              <Button 
+                className="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold hover-scale text-sm"
+                onClick={() => handleAddToCart(product)}
+              >
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Añadir
+              </Button>
             </div>
-            <h3 className="text-lg font-semibold mb-2 text-gray-900">Tarjetas de Amor</h3>
-            <p className="text-sm text-gray-600 mb-3">Expresa tus sentimientos</p>
-            <p className="text-rose-600 text-xl font-bold">desde 2,95 €</p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-yellow-200 to-orange-200 rounded-lg mb-4 flex items-center justify-center">
-              <span className="text-4xl">🎂</span>
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-gray-900">Cumpleaños</h3>
-            <p className="text-sm text-gray-600 mb-3">Celebra con estilo</p>
-            <p className="text-rose-600 text-xl font-bold">desde 2,95 €</p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-green-200 to-teal-200 rounded-lg mb-4 flex items-center justify-center">
-              <span className="text-4xl">🎄</span>
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-gray-900">Navidad</h3>
-            <p className="text-sm text-gray-600 mb-3">Felicitaciones únicas</p>
-            <p className="text-rose-600 text-xl font-bold">desde 2,95 €</p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg mb-4 flex items-center justify-center">
-              <span className="text-4xl">💐</span>
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-gray-900">Agradecimiento</h3>
-            <p className="text-sm text-gray-600 mb-3">Di gracias con cariño</p>
-            <p className="text-rose-600 text-xl font-bold">desde 2,95 €</p>
-          </div>
+          ))}
         </div>
 
         <div className="bg-white rounded-2xl p-8 md:p-12 mb-12">
