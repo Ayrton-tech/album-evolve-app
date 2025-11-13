@@ -27,8 +27,9 @@ export const CheckoutForm = ({ onBack }: { onBack: () => void }) => {
   };
 
   return (
-    <div className="p-6 animate-slide-in-right">
-      <div className="flex items-center gap-3 mb-6">
+    <div className="flex flex-col h-full">
+      {/* Header fijo */}
+      <div className="flex items-center gap-3 p-6 border-b border-border bg-gradient-to-r from-primary/10 to-secondary/10 flex-shrink-0">
         <Button
           variant="ghost"
           size="icon"
@@ -40,7 +41,9 @@ export const CheckoutForm = ({ onBack }: { onBack: () => void }) => {
         <h2 className="text-2xl font-bold gradient-text">Finalizar Compra</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Contenido con scroll */}
+      <div className="flex-1 overflow-y-auto p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
         {/* Datos de contacto */}
         <div className="glass-effect rounded-xl p-4 space-y-4">
           <h3 className="font-semibold text-lg flex items-center gap-2">
@@ -210,6 +213,7 @@ export const CheckoutForm = ({ onBack }: { onBack: () => void }) => {
           Pago 100% seguro con encriptación SSL
         </p>
       </form>
+      </div>
     </div>
   );
 };
