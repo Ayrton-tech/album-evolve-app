@@ -21,11 +21,11 @@ const Index = () => {
       <CartSidebar />
       
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white py-3 px-4 text-center text-sm font-medium animate-gradient">
+      <div className="bg-primary text-white py-3 px-4 text-center text-sm font-medium">
         <Link to="#newsletter" className="hover:underline flex items-center justify-center gap-2">
-          <Sparkles className="w-4 h-4 animate-pulse-glow" />
+          <Sparkles className="w-4 h-4" />
           <strong>Suscríbete a nuestra Newsletter</strong> y aprovecha ofertas exclusivas
-          <Sparkles className="w-4 h-4 animate-pulse-glow" />
+          <Sparkles className="w-4 h-4" />
         </Link>
       </div>
 
@@ -35,11 +35,11 @@ const Index = () => {
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 hover-scale">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg animate-pulse-glow">
+              <div className="w-12 h-12 bg-gradient-to-br from-accent via-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-2xl">P</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-bold gradient-text">
+                <span className="text-2xl font-bold text-primary">
                   PhotoMoments
                 </span>
                 <span className="text-xs text-muted-foreground">Tu historia en imágenes</span>
@@ -95,12 +95,12 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-600 to-purple-900 text-white py-16 md:py-24">
+      <section className="relative overflow-hidden bg-primary text-white py-16 md:py-24">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex items-center gap-2 mb-4 animate-slide-up">
-            <Award className="w-5 h-5 animate-pulse-glow" />
+            <Award className="w-5 h-5" />
             <span className="text-sm font-medium">Certificado de Calidad</span>
             <span className="mx-2">•</span>
             <Sparkles className="w-4 h-4" />
@@ -112,14 +112,14 @@ const Index = () => {
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 <span className="inline-block animate-scale-in">Álbum Digital</span>
                 <br />
-                <span className="gradient-text inline-block animate-scale-in" style={{ animationDelay: '0.2s' }}>Premium</span>
+                <span className="inline-block animate-scale-in" style={{ animationDelay: '0.2s' }}>Premium</span>
               </h1>
-              <p className="text-xl mb-8 text-blue-100 leading-relaxed">
+              <p className="text-xl mb-8 leading-relaxed">
                 No pares de escribir historias: crea ahora un álbum de fotos único en nuestra app, nuestro programa o directamente online.
               </p>
               <Link to="/album-digital">
-                <Button size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  DESCUBRIR AHORA <ArrowRight className="ml-2 animate-pulse" />
+                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  DESCUBRIR AHORA <ArrowRight className="ml-2" />
                 </Button>
               </Link>
 
@@ -130,7 +130,7 @@ const Index = () => {
                   { label: "Álbum Digital", price: "desde 9,95 €*", delay: '0.5s' }
                 ].map((item, i) => (
                   <div key={i} className="animate-slide-up glass-effect rounded-xl p-4" style={{ animationDelay: item.delay }}>
-                    <p className="text-sm text-blue-200 mb-1">{item.label}</p>
+                    <p className="text-sm opacity-80 mb-1">{item.label}</p>
                     <p className="text-2xl font-bold">{item.price}</p>
                   </div>
                 ))}
@@ -138,15 +138,15 @@ const Index = () => {
             </div>
 
             <div className="relative animate-float">
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500/30 to-purple-500/30 rounded-2xl blur-3xl"></div>
+              <div className="absolute inset-0 bg-primary-glow/20 rounded-2xl blur-3xl"></div>
               <img 
                 src={heroMain}
                 alt="Álbum Digital Premium"
                 className="relative rounded-2xl shadow-2xl hover-lift"
               />
-              <div className="absolute bottom-4 left-4 glass-effect text-white px-6 py-3 rounded-xl animate-pulse-glow">
+              <div className="absolute bottom-4 left-4 glass-effect text-white px-6 py-3 rounded-xl">
                 <p className="text-sm font-medium">Álbum Digital</p>
-                <p className="text-2xl font-bold gradient-text">desde 9,95 €*</p>
+                <p className="text-2xl font-bold">desde 9,95 €*</p>
               </div>
             </div>
           </div>
@@ -154,52 +154,52 @@ const Index = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-b from-muted/30 via-background to-muted/30 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-5xl font-bold text-center mb-4 text-white animate-slide-up">
+          <h2 className="text-5xl font-bold text-center mb-4 text-foreground animate-slide-up">
             Tus mejores momentos en productos fotográficos únicos
           </h2>
-          <p className="text-center text-slate-400 mb-16 text-lg animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <p className="text-center text-muted-foreground mb-16 text-lg animate-slide-up" style={{ animationDelay: '0.1s' }}>
             Calidad premium que cuenta tu historia
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { to: "/calendarios", img: productCalendar, badge: "Novedad", badgeColor: "bg-blue-500", title: "Calendarios 2025", desc: "Calendarios de pared, mesa y más con tus mejores momentos" },
-              { to: "/album-digital", img: productAlbum, badge: "Bestseller", badgeColor: "bg-yellow-500 text-gray-900", title: "Álbum Digital Premium", desc: "Libros de fotos personalizados con calidad profesional" },
+              { to: "/calendarios", img: productCalendar, badge: "Novedad", badgeColor: "bg-primary", title: "Calendarios 2025", desc: "Calendarios de pared, mesa y más con tus mejores momentos" },
+              { to: "/album-digital", img: productAlbum, badge: "Bestseller", badgeColor: "bg-accent text-accent-foreground", title: "Álbum Digital Premium", desc: "Libros de fotos personalizados con calidad profesional" },
               { to: "/tarjetas", img: productCards, title: "Tarjetas y Postales", desc: "Tarjetas personalizadas para cada ocasión especial" },
               { to: "/puzzles", img: productPuzzle, title: "Puzzles Personalizados", desc: "Convierte tus fotos en puzzles únicos de hasta 2000 piezas" },
-              { to: "/cuadros", img: productCanvas, badge: "Popular", badgeColor: "bg-purple-500", title: "Cuadros y Lienzos", desc: "Impresiones premium en lienzo, acrílico y más materiales" },
+              { to: "/cuadros", img: productCanvas, badge: "Popular", badgeColor: "bg-secondary", title: "Cuadros y Lienzos", desc: "Impresiones premium en lienzo, acrílico y más materiales" },
               { to: "/fundas", img: productCanvas, title: "Fundas Personalizadas", desc: "Fundas para móvil, tablet y laptop con tus diseños" },
             ].map((product, i) => (
               <Link key={i} to={product.to} className="group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
-                <Card className="overflow-hidden hover-lift bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+                <Card className="overflow-hidden hover-lift bg-card border-border backdrop-blur-sm">
                   <div className="relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity"></div>
                     <img 
                       src={product.img}
                       alt={product.title}
                       className="w-full aspect-[4/3] object-cover transform group-hover:scale-110 transition-transform duration-700"
                     />
                     {product.badge && (
-                      <div className={`absolute top-4 left-4 ${product.badgeColor} text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg z-20 animate-pulse-glow`}>
+                      <div className={`absolute top-4 left-4 ${product.badgeColor} text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg z-20`}>
                         {product.badge}
                       </div>
                     )}
                   </div>
                   <div className="p-6 relative">
-                    <h3 className="text-2xl font-bold mb-3 text-white group-hover:gradient-text transition-all duration-300">
+                    <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-all duration-300">
                       {product.title}
                     </h3>
-                    <p className="text-slate-300 mb-5 leading-relaxed">
+                    <p className="text-muted-foreground mb-5 leading-relaxed">
                       {product.desc}
                     </p>
-                    <Button variant="outline" className="w-full bg-gradient-to-r from-pink-500/10 to-purple-500/10 border-pink-500/50 text-pink-400 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all duration-300 font-semibold">
+                    <Button variant="outline" className="w-full border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold">
                       Ver productos <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -211,22 +211,22 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
+      <section className="py-20 bg-muted/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/50 to-background"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: Star, gradient: "from-purple-500 to-pink-500", title: "Calidad Premium", desc: "Materiales de la más alta calidad y tecnología de impresión profesional", delay: '0s' },
-              { icon: Check, gradient: "from-blue-500 to-cyan-500", title: "Garantía de Satisfacción", desc: "Si no estás satisfecho, te devolvemos el 100% de tu dinero", delay: '0.1s' },
-              { icon: Sparkles, gradient: "from-green-500 to-teal-500", title: "Envío Rápido", desc: "Entrega en 3-5 días laborables con seguimiento en tiempo real", delay: '0.2s' }
+              { icon: Star, color: "bg-primary", title: "Calidad Premium", desc: "Materiales de la más alta calidad y tecnología de impresión profesional", delay: '0s' },
+              { icon: Check, color: "bg-secondary", title: "Garantía de Satisfacción", desc: "Si no estás satisfecho, te devolvemos el 100% de tu dinero", delay: '0.1s' },
+              { icon: Sparkles, color: "bg-accent", title: "Envío Rápido", desc: "Entrega en 3-5 días laborables con seguimiento en tiempo real", delay: '0.2s' }
             ].map((feature, i) => (
-              <Card key={i} className="p-8 text-center bg-slate-800/50 border-slate-700/50 backdrop-blur-sm hover-lift animate-scale-in" style={{ animationDelay: feature.delay }}>
-                <div className={`w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg animate-pulse-glow`}>
+              <Card key={i} className="p-8 text-center bg-card border-border backdrop-blur-sm hover-lift animate-scale-in" style={{ animationDelay: feature.delay }}>
+                <div className={`w-20 h-20 ${feature.color} rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg`}>
                   <feature.icon className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-white">{feature.title}</h3>
-                <p className="text-slate-300 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-3 text-foreground">{feature.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
                   {feature.desc}
                 </p>
               </Card>
@@ -236,15 +236,15 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section id="newsletter" className="py-20 bg-gradient-to-br from-purple-600 via-pink-600 to-purple-700 relative overflow-hidden">
+      <section id="newsletter" className="py-20 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-50"></div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
-          <Sparkles className="w-16 h-16 text-white mx-auto mb-6 animate-pulse-glow" />
+          <Sparkles className="w-16 h-16 text-white mx-auto mb-6" />
           <h2 className="text-5xl font-bold text-white mb-6 animate-scale-in">
             Únete a nuestra comunidad
           </h2>
-          <p className="text-xl text-purple-100 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up">
+          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up">
             Recibe ofertas exclusivas, consejos creativos y las últimas novedades directamente en tu correo
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
@@ -253,18 +253,18 @@ const Index = () => {
               placeholder="Tu correo electrónico"
               className="bg-white/90 backdrop-blur-sm border-white/20 text-gray-900 placeholder:text-gray-500 focus:bg-white h-12 text-lg"
             />
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-purple-50 font-bold whitespace-nowrap h-12 px-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white font-bold whitespace-nowrap h-12 px-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
               Suscribirme
             </Button>
           </div>
-          <p className="text-sm text-purple-100 mt-6 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+          <p className="text-sm text-white/80 mt-6 animate-slide-up" style={{ animationDelay: '0.3s' }}>
             Al suscribirte aceptas nuestra política de privacidad. Puedes cancelar en cualquier momento.
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 text-slate-300 py-12">
+      <footer className="bg-foreground text-background py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
